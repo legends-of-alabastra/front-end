@@ -1,19 +1,96 @@
 import React from "react";
 import styled from "styled-components";
 
-import MainGame from "../assets/mainGame.wav"
+import MainGame from "../assets/mainGame.wav";
 
 export default class BottomBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      helpOpen: true,
+      volumeOpen: false,
+      volumeLevel: 0.1
+    };
+  }
+
+  helpModalToggle() {
+    let help = document.querySelector("#help-view");
+    if (this.state.helpOpen === false) {
+      help.style.display = "block";
+      this.setState({ helpOpen: true });
+    } else {
+      help.style.display = "none";
+      this.setState({ helpOpen: false });
+    }
+  }
+
+  volumeSliderHoverUp() {
+    let volumeControl = document.querySelector("#volume-control");
+    volumeControl.style.display = "block";
+    this.setState({ volumeOpen: true });
+  }
+
+  volumeSliderHoverDown() {
+    let volumeControl = document.querySelector("#volume-control");
+    volumeControl.style.display = "none";
+    this.setState({ volumeOpen: false });
+  }
+
+  adjustVolume(e) {
+    let audio = document.querySelector("audio");
+    this.setState({ volumeLevel: e.target.value });
+    audio.volume = this.state.volumeLevel;
+  }
+
+  stopMusic() {
+    let audio = document.querySelector("audio");
+    if (audio.paused === true) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
   render() {
     return (
       <BarView>
+        <HelpModal id="help-view">
+          <TheX onClick={() => this.helpModalToggle()}>
+            {" "}
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0)">
+                <path
+                  d="M15.0425 14.77C15.1883 14.5415 16.3698 12.857 15.7268 12.6033C14.6855 12.5848 13.6688 12.6453 12.7118 12.1408C11.4493 11.4763 10.5113 10.5693 9.57302 9.50179C9.31977 9.21429 9.32502 8.84979 9.57302 8.56104C11.071 6.70279 12.853 5.39004 14.7275 3.79604C15.5718 3.04604 14.1653 1.73304 13.1338 1.63904C12.665 1.63904 12.1965 1.92029 11.727 2.10779C10.0395 3.13929 9.00802 4.73354 7.71452 6.11279C7.56977 6.28879 7.36352 6.33629 7.16602 6.29904C6.96827 6.26229 6.77927 6.14079 6.66977 5.97854C5.94752 4.90579 5.28977 3.76054 4.83727 2.54479C4.59502 1.89554 4.36827 1.23779 4.20527 0.56329C3.96327 -0.44671 3.59627 0.10329 3.17477 0.64754C2.02277 2.13404 1.58552 3.27454 2.59727 5.03754C3.34252 6.33654 4.14452 7.57804 5.06502 8.75954C5.23652 8.98004 5.35802 9.30654 5.16877 9.56554C4.75177 10.1368 4.23777 10.851 3.64077 11.5053C3.44266 11.724 3.23417 11.9331 3.01602 12.1318C2.16202 13.0785 0.380523 12.9848 0.0990234 13.829C-0.275477 14.579 1.03677 15.891 2.30027 15.9363C2.53337 15.917 2.76292 15.8672 2.98302 15.788C4.54052 15.239 5.83152 13.372 6.74302 12.1838C6.98852 11.863 7.47052 11.6993 7.78727 12.049C8.99002 13.3763 10.3835 15.1843 12.1918 15.6883C13.3488 16.0105 14.3638 15.8378 15.0413 14.7693"
+                  fill="white"
+                />
+                <path
+                  d="M1.4798 13.8275C1.7613 12.9832 3.5428 13.0775 4.3968 12.1302C4.61405 11.9332 4.8218 11.7222 5.02155 11.5037C5.61805 10.8495 6.13255 10.1352 6.54905 9.56395C6.7388 9.3052 6.6168 8.97845 6.44555 8.75795C5.52555 7.57645 4.7223 6.3352 3.97755 5.03595C3.04055 3.4032 3.34655 2.3047 4.3118 0.970453C4.27385 0.834767 4.23802 0.6985 4.2043 0.561703C3.9623 -0.448297 3.5953 0.101703 3.1738 0.645953C2.0218 2.13245 1.58455 3.27295 2.5963 5.03595C3.34155 6.33495 4.14355 7.57645 5.06405 8.75795C5.23555 8.97845 5.35705 9.30495 5.1678 9.56395C4.7508 10.1352 4.2368 10.8495 3.6398 11.5037C3.44168 11.7224 3.23319 11.9315 3.01505 12.1302C2.16105 13.077 0.379547 12.9832 0.0980468 13.8275C-0.276453 14.5775 1.0358 15.8895 2.2993 15.9347C2.53032 15.9151 2.75786 15.8659 2.9763 15.7882C1.98505 15.4182 1.17505 14.4365 1.4798 13.8275Z"
+                  fill="#BEBEBE"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </TheX>
+        </HelpModal>
+        <SoundView
+          onMouseEnter={() => this.volumeSliderHoverUp()}
+          onMouseLeave={() => this.volumeSliderHoverDown()}
+        >
           <div>
-          <audio loop >
-        <source src={MainGame} type="audio/wav" />
-      </audio>
-            </div>
-        <SoundView>
-          <SoundImg>
+            <audio autoPlay loop>
+              <source src={MainGame} type="audio/wav" />
+            </audio>
+          </div>
+          <SoundImg onClick={() => this.stopMusic()}>
             <svg
               width="24"
               height="24"
@@ -28,8 +105,14 @@ export default class BottomBar extends React.Component {
             </svg>
           </SoundImg>
           <SoundText>Sound</SoundText>
+          <VolumeSlider id="volume-control">
+            <VolumeControl
+              value={this.state.volumeLevel}
+              onChange={e => this.adjustVolume(e)}
+            ></VolumeControl>
+          </VolumeSlider>
         </SoundView>
-        <HelpView>
+        <HelpView onClick={() => this.helpModalToggle()}>
           <HelpImg>
             <svg
               width="28"
@@ -150,6 +233,8 @@ const BarView = styled.div`
   box-sizing: border-box;
 `;
 
+// Currency Styles
+
 const CurrencyView = styled.div`
   position: absolute;
   display: flex;
@@ -179,10 +264,12 @@ const CurrencyText = styled.p`
 
   color: #000000;
 `;
+
 // Styles for the Sound Controls
 
 const SoundView = styled.div`
   display: flex;
+  cursor: pointer;
   flex-direction: row;
   margin-left: 15px;
   height: 37px;
@@ -205,11 +292,32 @@ const SoundText = styled.p`
   color: #ffffff;
 `;
 
+const VolumeSlider = styled.div`
+  display: none;
+  position: absolute;
+  top: -38px;
+  left: 0px;
+  height: 38px;
+  width: 150px;
+  background: #7e0000;
+  transition: 0.5s;
+`;
+
+const VolumeControl = styled.input.attrs({
+  type: "range",
+  min: "0",
+  max: "1",
+  step: "0.1"
+})`
+  cursor: pointer;
+  margin-top: 10px;
+`;
 // Styles for the Help Text box
 
 const HelpView = styled.div`
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   margin-left: 40px;
   height: 37px;
 `;
@@ -229,4 +337,22 @@ const HelpText = styled.p`
   /* identical to box height */
 
   color: #ffffff;
+`;
+
+const HelpModal = styled.div`
+  display: block;
+  position: absolute;
+  top: -65vh;
+  left: 33vw;
+  height: 300px;
+  width: 500px;
+  background: rgba(0, 0, 0, 0.4);
+`;
+
+const TheX = styled.div`
+  width: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
 `;
