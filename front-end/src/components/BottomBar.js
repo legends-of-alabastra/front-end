@@ -9,10 +9,14 @@ export default class BottomBar extends React.Component {
     this.state = {
       helpOpen: true,
       volumeOpen: false,
-      volumeLevel: 0.1
+      volumeLevel: 0.3
     };
   }
 
+  componentDidMount() {
+    let audio = document.querySelector("audio");
+    audio.volume = this.state.volumeLevel;
+  }
   helpModalToggle() {
     let help = document.querySelector("#help-view");
     if (this.state.helpOpen === false) {
@@ -132,59 +136,7 @@ export default class BottomBar extends React.Component {
         <CurrencyView>
           <CurrencyText>Gold:</CurrencyText>
           <CurrencyText>Stashed:</CurrencyText>
-          <svg
-            width="64"
-            height="16"
-            viewBox="0 0 64 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <rect width="64" height="16" fill="url(#pattern0)" />
-            <defs>
-              <pattern
-                id="pattern0"
-                patternContentUnits="objectBoundingBox"
-                width="1"
-                height="1"
-              >
-                <use href="#image0" transform="scale(0.015625 0.0625)" />
-              </pattern>
-              <image
-                id="image0"
-                width="64"
-                height="16"
-                href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAB0UlEQVRYR+WXsUoDQRCGJxxqEYVUVlpZC54+gORFokhaUexNiPai2MaAeRHJC3iCtZ2VlaBpDIcye5lznZvdncUmIVeFy/3zz3wzu3tXgwW/ar76z1ur3/j/5fDT+5wrxjzonYVh8hc3W6a2zslLNIR50YsAKPm8fgzJ+DYaAtdjnF77VA2xhNd4KobrfSeqCTH5VwDYYoAUkvFROeGaSZDMMYAWgl18Pnk03snSrhqC5E+NlPL/A4AXb8wtAKHl4IOngcCLJ++8PlBBcMMfAEBmpplDqADo9q8BO0/k88lduQw0AEjPwdEY+abIFHD/Adh5ricInYM151JCPfrTsrU3Z9QjBL4UBQCj37HD0TVjWNDTAZjq2eRoAXT7o0rxpMUieu19LwDauPnJVACAil5cAr6jMdjB6cnhijFr+gqAs9aG99Xoavjq7cC86YMAsue3Eki6vQ5aAKjD50mPv/EK6ZvpstFJF8Z6yL5UDbB9KRfJPwpA83DTex7jJmRPAIfX2FtR6e2ECQTei/Hn3hhH8hffA6QiQuaUqAQBOxoqnuttCJriJX87hsvf+SZIEGLMXUlo4UkQ8N5/9CH43m8BguBbt64d056EWdYv/NfgD6q5GS9b95XyAAAAAElFTkSuQmCC"
-              />
-            </defs>
-          </svg>
           <CurrencyText>Marks:</CurrencyText>
-          <svg
-            width="64"
-            height="16"
-            viewBox="0 0 64 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <rect width="64" height="16" fill="url(#pattern1)" />
-            <defs>
-              <pattern
-                id="pattern1"
-                patternContentUnits="objectBoundingBox"
-                width="1"
-                height="1"
-              >
-                <use href="#image1" transform="scale(0.015625 0.0625)" />
-              </pattern>
-              <image
-                id="image1"
-                width="64"
-                height="16"
-                href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAB40lEQVRYR+WXPUsDQRCGN03SCEKKhPwCQRDEQgsLNYVYC341CukCtoJYpEghtkIgnRArP8DaSrCw0EKsAv6CkBSpbJJGeZfMse7N7s4qiCFXHXf37jvzzMzeXUZN+JHx5b9TKHzi/nWv533OtcY46J2JIfjjzRWd29ndYzSEcdGzACj47NSyGn48RUOw9Vinfnkqhkj6+eaN9n6rbkcVISb+FABTrBZn1PDhIulwSSdw5lhACsFMvn17r71ntzbEEDh/KiQX/zcAdvIwNwGExsEHTwLBTp68s+WKCIITfrmi1Mu77mYbQgpAbf9EofJEvn10noyBBADpbXDURr4uQgJX3a5C5W09QdgtFp2jBD38aWzNzRl6QLBHMQ2g0UqSx4luwxE9EYCR/qcAao1WKnlKBEnUDw+8AGjjtt9MGoBSKT07Ar5XY6iCrgCkHfDX+hSAaj7v/TRq9vveCoybPgjgtdNJgCyUSkoKADo8T3qc4wjplwYDreMOrPWcy4kKYPpSLJx/FIC1vXXv+xibkNkBNrzp1TmR3gyYQOBajL/tjXU4f/Y7gEsiZE6BchBQ0VDytt6EIEme8zfXcPk7vwQJQoy5KwgpPA4Crv1GH4Lv/RcgCL65de2YZif8Z/3E/w1+AXZgHy/SZVbdAAAAAElFTkSuQmCC"
-              />
-            </defs>
-          </svg>
           <svg
             width="40"
             height="37"
@@ -239,6 +191,7 @@ const CurrencyView = styled.div`
   position: absolute;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   right: 0;
   width: 632px;
   height: 36px;
@@ -254,7 +207,7 @@ const CurrencyView = styled.div`
 `;
 
 const CurrencyText = styled.p`
-  margin-top: -1px;
+  margin-top: 1px;
   font-family: Pirata One;
   font-style: normal;
   font-weight: normal;

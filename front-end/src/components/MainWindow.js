@@ -33,6 +33,5 @@ overflow: hidden;
     margin-top: 1vh;
     width: 99vw;
     height: 98vh;
-    border: 1px solid red;
     background-color: blue;
 `
