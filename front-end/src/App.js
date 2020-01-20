@@ -1,11 +1,11 @@
 import React from 'react';
-
+import MainWindow from './components/MainWindow'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1> Giggity </h1>
+      <MainWindow />
     </div>
   );
 }
