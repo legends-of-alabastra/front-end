@@ -11,8 +11,8 @@ def decompress_tile(tile):
     for el in tile:
         if len(str(el)) < 16: el = ('0' * (16-len(str(el))))+str(el)
         else: el = str(el)
-        decompressed_tile.append([c for c in el[:8]])
-        decompressed_tile.append([c for c in el[8:]])
+        decompressed_tile.append([int(c) for c in el[:8]])
+        decompressed_tile.append([int(c) for c in el[8:]])
     return decompressed_tile
 
 def get_random_element(array):
@@ -26,3 +26,5 @@ def rotate_2d_array(array, direction):
 
 def rotate_tile(tile, direction):
     return compress_tile(rotate_2d_array(decompress_tile(tile), direction))
+
+for el in decompress_tile(tile): print(el)
