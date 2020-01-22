@@ -6,6 +6,7 @@ const compress_tile = tile => {
     return compressed_tile
 }
 
+const test = [614444473444444,3444444344344444,4444444444444444,4344444444434444]
 //takes an array of ints, converts them to strings of length 16
 //then returns a 2d array of ints
 const decompress_tile = tile => {
@@ -15,15 +16,17 @@ const decompress_tile = tile => {
     }, '').split('').map(val => parseInt(val))
     const tile_width = Math.sqrt(tile.length)
     let new_tile = []
-    for(let row=0; row<tile_width; row++) {
-        new_tile.push(tile.splice(0,tile_width))
-    }
+    for(let row=0; row<tile_width; row++) new_tile.push(tile.splice(0,tile_width))
     return new_tile
 }
+
+// console.log(decompress_tile(test))
 
 //returns a random element from an array
 const get_random_element = tileset_array =>
     tileset_array[Math.floor(Math.random() * tileset_array.length)]
+
+console.log('gre', get_random_element(test))
 
 //mimics pythons zip function
 //grabs the first element in each array and puts them into an array

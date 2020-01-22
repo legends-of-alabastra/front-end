@@ -1,7 +1,7 @@
 const universe_variables = {
     min_tiles_from_edge: 3,
-    map_width: 800,
-    map_height: 600,
+    map_width: 600,
+    map_height: 400,
     chance_of_island_expansion: 55,
     map_coverage: 20,
     max_island_width: 500,
