@@ -48,7 +48,7 @@ const island_tiles = island => {
             const tile_type = island[row][col]
             if(tile_type === 1) island[row][col] = get_random_element(tileset.island.mainland)
             if(tile_type === 2) {
-                test = get_shore_tile(island, col, row)
+                let test = get_shore_tile(island, col, row)
                 island[row][col] = test
             }
         }

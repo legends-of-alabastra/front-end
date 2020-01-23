@@ -59,4 +59,4 @@ const draw_tile = (ctx, coordinates, pixel_size, colors, data) => {
 }
 
 // draw_viewport(player, map)
-// draw_map(map, '#00f', 1, tileset.island.colors)
+draw_map(map, '#00f', 1, tileset.island.colors)
