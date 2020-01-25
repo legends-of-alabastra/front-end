@@ -17,7 +17,7 @@ export default class BottomBar extends Component {
 
     const styles = {
       _view: {
-        position: 'absolute',
+        position: 'fixed',
         display: 'flex',
         width: '100%',
         height: '37px',
@@ -111,7 +111,7 @@ export default class BottomBar extends Component {
 
     return (
       <div style = { _view }>
-        <div style = { _helpModal }>
+        {/* <div style = { _helpModal }>
           <div style = { _theX }>
             <img src = { HelpX } />
           </div>
@@ -124,7 +124,7 @@ export default class BottomBar extends Component {
               Just so you know.
             </p>
           </div>
-        </div>
+        </div> */}
         <div 
           style = { _soundView }
           onMouseEnter = { () => this.setState({ volumeOpen: true }) }

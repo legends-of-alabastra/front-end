@@ -4,7 +4,11 @@ import Cookies from 'universal-cookie';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+// public
 import Auth from './Pages/Auth/Auth';
+
+// private
+import PrivateRoute from './Pages/Auth/PrivateRoute';
 import MainWindow from './Pages/MainApp/layout/MainWindow';
 
 class App extends Component {
