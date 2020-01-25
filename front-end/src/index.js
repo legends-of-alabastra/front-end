@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import MainWindow from './components/ui/MainWindow'
+import Viewport from './components/ui/viewport'
 import {createGlobalStyle} from 'styled-components'
 import {Reset} from 'styled-reset'
 
@@ -18,6 +18,6 @@ ReactDOM.render(
     <>
         <Reset />
         <GlobalStyle />
-        <MainWindow />
+        <Viewport />
     </>,
     document.getElementById('root'))

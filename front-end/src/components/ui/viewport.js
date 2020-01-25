@@ -1,13 +1,15 @@
 import React from 'react'
-import Style from './style/mainwindow'
+import Style from './style'
 
 // import UI components
-import BottomBar from './bottom_bar/BottomBar.js'
+import Game from './game'
+import BottomBar from './bottom_bar'
 
 export default class MainWindow extends React.Component {
   render() {
     return (
-      <Style>
+      <Style className='viewport'>
+        <Game />
         <BottomBar />
       </Style>
     )

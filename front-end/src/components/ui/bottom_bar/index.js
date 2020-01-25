@@ -1,6 +1,6 @@
 import React from 'react'
 //style
-import Style from './style/style'
+import Style from './style'
 //components
 import VolumeControl from './VolumeControl'
 //audio
@@ -9,12 +9,7 @@ import VolumeControl from './VolumeControl'
 export default class BottomBar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      helpOpen: true,
-      volumeOpen: false,
-      volumeLevel: 0.3,
-      playing: true
-    }
+    this.state = {}
   }
   render() {
     return (
