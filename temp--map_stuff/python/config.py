@@ -1,7 +1,7 @@
 config = {
     'map': {
-        'height': 100,
-        'width': 100,
+        'height': 20,
+        'width': 20,
         'coverage': 20
     },
     'island': {
@@ -11,9 +11,9 @@ config = {
             'south': 60,
             'west': 55
         },
-        'min_width': 10,
-        'min_height': 10,
-        'max_width': 20,
-        'max_height': 20
+        'min_width': 1,
+        'min_height': 1,
+        'max_width': 5,
+        'max_height': 5
     }
 }

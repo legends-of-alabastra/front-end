@@ -42,6 +42,7 @@ def add_to_map(map, island, island_tileset):
 def generate_map(tileset, config):
     island_tileset = []
     map = [[0 for x in range(config['map']['width'])] for y in range(config['map']['width'])]
+    print(len(map), len(map[0]))
     map_coverage = 0
     while map_coverage < config['map']['width']*config['map']['height']*(config['map']['coverage']/100):
         island = generate_island(tileset['island'], config['island'])
@@ -49,4 +50,5 @@ def generate_map(tileset, config):
     return {'tileset': island_tileset, 'map': map, 'colors': tileset['island']['colors']}
 
 
-print(generate_map(tileset, config))
+test = generate_map(tileset, config)
+print(len(test['tileset']))
