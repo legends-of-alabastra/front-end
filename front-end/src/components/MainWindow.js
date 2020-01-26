@@ -9,8 +9,6 @@ import RAID from "../assets/RAID.jpg";
 
 // import UI components
 import MapWindow from "./MapWindow.js";
-import ViewPort from "./ViewPort.js";
-import RoomWindow from "./RoomWindow.js";
 import InfoWindow from "./InfoWindow.js";
 import ChatWindow from "./ChatWindow.js";
 import BottomBar from "./BottomBar.js";
@@ -21,7 +19,6 @@ export default class MainWindow extends React.Component {
       <MainView>
         <Game />
         <MapWindow />
-        <RoomWindow />
         <InfoWindow />
         <ChatWindow />
         <BottomBar />

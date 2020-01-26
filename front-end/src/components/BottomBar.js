@@ -117,7 +117,7 @@ export default class BottomBar extends React.Component {
         </HelpView>
         <CurrencyView>
           <CurrencyText>Gold: 0</CurrencyText>
-          c
+          <img src={gold}/>
         </CurrencyView>
         <Anchor>
         <img src={anchor} />
