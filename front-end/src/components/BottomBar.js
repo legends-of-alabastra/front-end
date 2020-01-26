@@ -4,7 +4,10 @@ import styled from "styled-components";
 import MainGame from "../assets/mainGame.wav";
 
 // Image Imports
-import WASD from "../assets/WASD.svg";
+import SKey from "../assets/TheSKey.svg";
+import AKey from "../assets/TheAKey.svg";
+import DKey from "../assets/TheDKey.svg";
+import PKey from "../assets/ThePKey.svg";
 import HelpX from "../assets/the-x.svg";
 import soundOn from "../assets/subway_sound.svg";
 import soundOff from "../assets/subway_mute.svg";
@@ -73,9 +76,10 @@ export default class BottomBar extends React.Component {
             <img src={HelpX} />
           </TheX>
           <ControlHelper>
-            <img src={WASD} />
-            <HelpText>Movement is controlled with the WASD keys.</HelpText>
-            <HelpText>Just so you know.</HelpText>
+            <img src={AKey}/>
+            <img src={SKey}/>
+            <img src={DKey}/>
+            <img src={PKey}/>
           </ControlHelper>
         </HelpModal>
         <SoundView
@@ -117,13 +121,13 @@ export default class BottomBar extends React.Component {
         </HelpView>
         <CurrencyView>
           <CurrencyText>Gold: 0</CurrencyText>
-          <img src={gold}/>
+          <img src={gold} />
         </CurrencyView>
         <Anchor>
-        <img src={anchor} />
+          <img src={anchor} />
         </Anchor>
         <Pickup>
-        <img src={pickup} />
+          <img src={pickup} />
         </Pickup>
       </BarView>
     );
@@ -149,25 +153,27 @@ const BarView = styled.div`
 // Action Buttons
 
 const Pickup = styled.div`
-position: absolute;
-top: -220px;
-left: 520px;
-height: 100px;
-width: 100px;
-background: #f1dbb1;
-border-radius: 4px;
-cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: -220px;
+  left: 520px;
+  height: 100px;
+  width: 100px;
+  background: #f1dbb1;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 const Anchor = styled.div`
-position: absolute;
-top: -110px;
-left: 520px;
-height: 100px;
-width: 100px;
-background: #f1dbb1;
-border-radius: 4px;
-cursor: pointer;
+  position: absolute;
+  top: -110px;
+  left: 520px;
+  height: 100px;
+  width: 100px;
+  background: #f1dbb1;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 // Currency Styles
@@ -283,9 +289,9 @@ const HelpModal = styled.div`
   position: absolute;
   top: -65vh;
   left: 33vw;
-  height: 300px;
+  height: 330px;
   width: 500px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.7);
 `;
 
 const TheX = styled.div`
@@ -297,5 +303,4 @@ const TheX = styled.div`
 `;
 
 const ControlHelper = styled.div`
-  margin-top: 30px;
 `;
