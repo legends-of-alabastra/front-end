@@ -8,10 +8,11 @@ export default class Map extends React.Component {
         this.state = {
             player_coordinates: {x: 0, y: 0},
             player_direction: 90,
-            player_speed: 1,
+            player_speed: 5,
             top: 0,
             left: 0,
             interval: null,
+            map: []
         }
         
     }
@@ -22,14 +23,12 @@ export default class Map extends React.Component {
         this.setState({
             top: window.innerHeight / 2 - 5,
             left: window.innerWidth / 2 - 6,
-            interval: setInterval(test => this.move_canvas(), 1000/30)
+            interval: setInterval(test => this.move_canvas(), 1000/30),
+            map: map
         })
     }
     draw_ship() {
         draw_ship(this.state.player_direction)
-    }
-    resize() {
-
     }
     move_canvas = (e) => {
         this.setState(prev => {
@@ -50,36 +49,53 @@ export default class Map extends React.Component {
                     default: break
                 }
                 if(prev.player_direction >= 360) prev.player_direction = 0
-                if(prev.player_direction < 0) prev.player_direction = 270
+                if(prev.player_direction < 0) prev.player_direction = 315
             }
+            const map = this.state.map
+            const row = Math.round(prev.player_coordinates.y/8)
+            const col = Math.round(prev.player_coordinates.x/8)
+            console.log('r', row, 'c', col)
             switch(prev.player_direction) {
-                case 0: prev.player_coordinates.y+=prev.player_speed; break
-                case 45: 
-                    prev.player_coordinates.y+=prev.player_speed/2
-                    prev.player_coordinates.x-=prev.player_speed/2
+                case 0:
+                    if(map[row-1] && !map[row-1][col]) prev.player_coordinates.y-=prev.player_speed
                     break
-                case 90: prev.player_coordinates.x-=prev.player_speed; break
+                case 45:
+                    if(map[row-1] && !map[row-1][col]) prev.player_coordinates.y-=Math.sqrt((prev.player_speed*prev.player_speed)/2)
+                    if(map[row][col+1] !== undefined && !map[row][col+1]) prev.player_coordinates.x+=Math.sqrt((prev.player_speed*prev.player_speed)/2)
+                    break
+                case 90:
+                    if(map[row][col+1] !== undefined && !map[row][col+1]) prev.player_coordinates.x+=prev.player_speed
+                    break
                 case 135:
-                    prev.player_coordinates.y-=prev.player_speed/2
-                    prev.player_coordinates.x-=prev.player_speed/2
+                    if(map[row+1] && !map[row+1][col]) prev.player_coordinates.y+=Math.sqrt((prev.player_speed*prev.player_speed)/2)
+                    if(map[row][col+1] !== undefined && !map[row][col+1]) prev.player_coordinates.x+=Math.sqrt((prev.player_speed*prev.player_speed)/2)
                     break
-                case 180: prev.player_coordinates.y-=prev.player_speed; break
+                case 180:
+                    if(map[row+1] && !map[row+1][col]) prev.player_coordinates.y+=prev.player_speed
+                    break
                 case 225:
-                    prev.player_coordinates.y-=prev.player_speed/2
-                    prev.player_coordinates.x+=prev.player_speed/2
+                    if(map[row+1] && !map[row+1][col]) prev.player_coordinates.y+=Math.sqrt((prev.player_speed*prev.player_speed)/2)
+                    if(map[row][col-1] !== undefined && !map[row][col-1]) prev.player_coordinates.x-=Math.sqrt((prev.player_speed*prev.player_speed)/2)
                     break
-                case 270: prev.player_coordinates.x+=prev.player_speed; break
+                case 270:
+                    if(map[row][col-1] !== undefined && !map[row][col-1])
+                    prev.player_coordinates.x-=prev.player_speed
+                    break
                 case 315:
-                    prev.player_coordinates.y+=prev.player_speed/2
-                    prev.player_coordinates.x+=prev.player_speed/2
+                    if(map[row-1] && !map[row-1][col]) prev.player_coordinates.y-=Math.sqrt((prev.player_speed*prev.player_speed)/2)
+                    if(map[row][col-1] !== undefined && !map[row][col-1]) prev.player_coordinates.x-=Math.sqrt((prev.player_speed*prev.player_speed)/2)
                     break
                 default: break
             }
             if(prev.player_coordinates.x < -window.innerWidth/2) prev.player_coordinates.x = -window.innerWidth/2
             if(prev.player_coordinates.y < -window.innerHeight/2) prev.player_coordinates.y = -window.innerHeight/2
-            document.querySelector('#map').style.transform = `translate(${prev.player_coordinates.x}px, ${prev.player_coordinates.y - window.innerHeight}px)`
+
+            const canvas_coordinate_x = window.innerWidth / 2 - prev.player_coordinates.x
+            const canvas_coordinate_y = window.innerHeight / 2 - prev.player_coordinates.y
+
+            document.querySelector('#map').style.transform = `translate(${canvas_coordinate_x}px, ${canvas_coordinate_y}px)`
             this.draw_ship(90)
-            console.log(prev.player_direction)
+            console.log(prev.player_direction, '--', prev.player_coordinates)
             return(prev.player_coordinates)
         })
     }
