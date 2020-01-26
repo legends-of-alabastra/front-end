@@ -8,8 +8,9 @@ import WASD from "../assets/WASD.svg";
 import HelpX from "../assets/the-x.svg";
 import soundOn from "../assets/subway_sound.svg";
 import soundOff from "../assets/subway_mute.svg";
-import HelpIcon from "../assets/help-icon.svg";
-import BuyIcon from "../assets/buy_premium.svg";
+import gold from "../assets/gold_coin.svg";
+import pickup from "../assets/pickup.svg";
+import anchor from "../assets/anchor.svg";
 
 export default class BottomBar extends React.Component {
   constructor(props) {
@@ -115,11 +116,15 @@ export default class BottomBar extends React.Component {
           <HelpText>Help</HelpText>
         </HelpView>
         <CurrencyView>
-          <CurrencyText>Gold:</CurrencyText>
-          <CurrencyText>Stashed:</CurrencyText>
-          <CurrencyText>Marks:</CurrencyText>
-          <img src={BuyIcon} />
+          <CurrencyText>Gold: 0</CurrencyText>
+          c
         </CurrencyView>
+        <Anchor>
+        <img src={anchor} />
+        </Anchor>
+        <Pickup>
+        <img src={pickup} />
+        </Pickup>
       </BarView>
     );
   }
@@ -141,6 +146,30 @@ const BarView = styled.div`
   box-sizing: border-box;
 `;
 
+// Action Buttons
+
+const Pickup = styled.div`
+position: absolute;
+top: -220px;
+left: 520px;
+height: 100px;
+width: 100px;
+background: #f1dbb1;
+border-radius: 4px;
+cursor: pointer;
+`;
+
+const Anchor = styled.div`
+position: absolute;
+top: -110px;
+left: 520px;
+height: 100px;
+width: 100px;
+background: #f1dbb1;
+border-radius: 4px;
+cursor: pointer;
+`;
+
 // Currency Styles
 
 const CurrencyView = styled.div`
@@ -149,7 +178,7 @@ const CurrencyView = styled.div`
   flex-direction: row;
   justify-content: space-between;
   right: 0;
-  width: 632px;
+  width: 232px;
   height: 36px;
 
   background: linear-gradient(
@@ -164,6 +193,7 @@ const CurrencyView = styled.div`
 
 const CurrencyText = styled.p`
   margin-top: 1px;
+  margin-left: 5px;
   font-family: Pirata One;
   font-style: normal;
   font-weight: normal;
@@ -267,4 +297,5 @@ const TheX = styled.div`
 `;
 
 const ControlHelper = styled.div`
-margin-top: 30px`;
+  margin-top: 30px;
+`;

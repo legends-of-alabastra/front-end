@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import ChatClient from "./ChatClient.js";
+
+// SVG imports
+import sen from "../assets/send.svg";
 
 export default class ChatWindow extends React.Component {
   constructor(props) {
@@ -8,6 +12,7 @@ export default class ChatWindow extends React.Component {
       open: true
     };
   }
+
 
   boxToggle() {
     let view = document.querySelector("#chat-view");
@@ -25,13 +30,19 @@ export default class ChatWindow extends React.Component {
         <ChatTab onClick={() => this.boxToggle()}>
           <ChatText>Chat</ChatText>
         </ChatTab>
+        <Chat>
+        <ChatClient/>
+        </Chat>
       </ChatView>
     );
   }
 }
 
+
+
 // Styles
 
+//   background: rgba(0, 0, 0, 0.4);
 const ChatView = styled.div`
   position: absolute;
   width: 500px;
@@ -68,3 +79,5 @@ const ChatText = styled.p`
 
   color: #000000;
 `;
+
+const Chat = styled.div``;

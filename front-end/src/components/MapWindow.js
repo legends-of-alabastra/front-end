@@ -37,6 +37,7 @@ const MapView = styled.div`
   height: 310px;
   width: 272px;
   position: absolute;
+  top: 0px;
   left: 0px;
   border: 2px solid #ffdc61;
   background: rgba(0, 0, 0, 0.4);
