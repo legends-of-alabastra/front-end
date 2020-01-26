@@ -2,7 +2,7 @@ import React from 'react'
 //style
 import Style from './style'
 //components
-import Map from './map'
+import Map from './components/map'
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ export default class Game extends React.Component {
         this.state = {}
     }
     componentDidMount() {
-
+        console.log('made it here')
     }
     render() {
         return (
