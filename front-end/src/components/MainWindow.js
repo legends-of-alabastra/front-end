@@ -1,8 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
 //game component
-import Game from "./game";
+import Game from "./game/Game";
 
 // Import RAID product placement
 import RAID from "../assets/RAID.jpg";
@@ -15,25 +14,20 @@ import BottomBar from "./BottomBar.js";
 
 export default class MainWindow extends React.Component {
   render() {
+    const main_view = {
+      overflow: 'hidden',
+      width: '100vw',
+      height: '100vh'
+    }
+    
     return (
-      <MainView>
+      <div style = { main_view }>
         <Game />
         <MapWindow />
         <InfoWindow />
         <ChatWindow />
         <BottomBar />
-      </MainView>
+      </div>
     );
   }
 }
-
-// Styling
-
-const MainView = styled.div`
-  overflow: hidden;
-  position: relative;
-  margin: auto;
-  margin-top: 1vh;
-  width: 99vw;
-  height: 98vh;
-`;

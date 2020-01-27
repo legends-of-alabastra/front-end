@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+
 import {
   ChatkitProvider,
   TokenProvider,
@@ -16,20 +16,43 @@ const tokenProvider = new TokenProvider({
 });
 
 export default function ChatClient() {
+  const chat_client = {
+    position: 'relative',
+    height: '189px',
+    marginTop: '5px'
+  }
+
+  const chat_textbox = {
+    color: 'white',
+    overflow: 'auto'
+  }
+
+  const chat_input = {
+    height: '40px',
+    position: 'absolute',
+    bottom: '-40px',
+    background: '#f1dbb1',
+    width: '496px'
+  }
+
   return (
-    <Chat_Client>
+    <div style = { chat_client }>
       <ChatkitProvider
         instanceLocator={instanceLocator}
         tokenProvider={tokenProvider}
         userId={userId}
       >
-        <ChatTextBox>
+        <div style = { chat_textbox }>
           <WelcomeMessage />
-        </ChatTextBox>
+        </div>
 
-        <ChatInput />
+        <div style = { chat_input }>
+          <input 
+            
+          />
+        </div>
       </ChatkitProvider>
-    </Chat_Client>
+    </div>
   );
 }
 
@@ -42,24 +65,3 @@ const WelcomeMessage = withChatkit(props => {
     </div>
   );
 });
-
-// Styles
-
-const Chat_Client = styled.div`
-  position: relative;
-  height: 189px;
-  margin-top: 5px;
-`;
-
-const ChatTextBox = styled.div`
-  color: white;
-  overflow: auto;
-`;
-
-const ChatInput = styled.div`
-  height: 40px;
-  position: absolute;
-  bottom: -40px;
-  background: #f1dbb1;
-  width: 496px;
-`;

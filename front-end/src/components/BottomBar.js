@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import MainGame from "../assets/mainGame.wav";
 
@@ -16,20 +15,18 @@ import pickup from "../assets/pickup.svg";
 import anchor from "../assets/anchor.svg";
 
 export default class BottomBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      helpOpen: true,
-      volumeOpen: false,
-      volumeLevel: 0.3,
-      playing: true
-    };
+  state = {
+    helpOpen: true,
+    volumeOpen: false,
+    volumeLevel: 0.3,
+    playing: true
   }
 
   componentDidMount() {
     const audio = document.querySelector("audio");
     audio.volume = this.state.volumeLevel;
   }
+  
   helpModalToggle() {
     let help = document.querySelector("#help-view");
     if (this.state.helpOpen === false) {
@@ -69,20 +66,162 @@ export default class BottomBar extends React.Component {
     }
   }
   render() {
+    const bar_view = {
+      position: 'absolute',
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      height: '37px',
+      left: '0px',
+      bottom: '0px',
+      background: '#7e0000',
+      border: '1px solid #ffdc61',
+      boxSizing: 'border-box'
+    }
+
+    const pickup_view = {
+      display: 'flex',
+      justifyContent: 'center',
+      position: 'absolute',
+      top: '-220px',
+      left: '520px',
+      height: '100px',
+      width: '100px',
+      background: '#f1dbb1',
+      borderRadius: '4px',
+      cursor: 'pointer'
+    }
+
+    const anchor_view = {
+      position: 'absolute',
+      top: '-110px',
+      left: '520px',
+      height: '100px',
+      width: '100px',
+      background: '#f1dbb1',
+      borderRadius: '4px',
+      cursor: 'pointer'
+    }
+
+    const currency_view = {
+      position: 'absolute',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      right: '0',
+      width: '232px',
+      height: '36px',
+      background: 'linear-gradient(0deg,rgba(241, 219, 177, 0.7),rgba(241, 219, 177, 0.7)),linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(86277jpg)',
+      border: '1px solid #ffdc61',
+      boxSizing: 'border-box'
+    }
+
+    const currency_text = {
+      marginTop: '1px',
+      marginLeft: '5px',
+      fontFamily: 'Pirata One',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '24px',
+      lineHeight: '31px',
+      color: '#000000'
+    }
+
+    const sound_view = {
+      display: 'flex',
+      cursor: 'pointer',
+      flexDirection: 'row',
+      marginLeft: '15px',
+      height: '37px'
+    }
+
+    const sound_img = {
+      marginRight: '10px',
+      marginTop: '5px'
+    }
+
+    const sound_text = {
+      marginTop: '2px',
+      fontFamily: 'Pirata One',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '24px',
+      lineHeight: '31px',
+      color: '#ffffff'
+    }
+
+    const volume_slider = {
+      display: 'none',
+      position: 'absolute',
+      top: '-38px',
+      left: '0px',
+      height: '38px',
+      width: '150px',
+      background: '#7e0000',
+      transition: '0.5s'
+    }
+
+    const volume_control = {
+      cursor: 'pointer',
+      marginTop: '10px'
+    }
+
+    const help_view = {
+      display: 'flex',
+      flexDirection: 'row',
+      cursor: 'pointer',
+      marginLeft: '40px',
+      height: '37px'
+    }
+
+    const help_img = {
+      marginRight: '8px',
+      marginTop: '3px'
+    }
+
+    const help_text = {
+      marginTop: '2px',
+      fontFamily: 'Pirata One',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '24px',
+      lineHeight: '31px',
+      color: '#ffffff'
+    }
+
+    const help_modal = {
+      display: 'block',
+      position: 'absolute',
+      top: '-65vh',
+      left: '33vw',
+      height: '330px',
+      width: '500px',
+      background: 'rgba(0, 0, 0, 0.7)'
+    }
+
+    const the_x = {
+      width: '30px',
+      position: 'absolute',
+      right: '5px',
+      top: '5px',
+      cursor: 'pointer'
+    }
+
     return (
-      <BarView>
-        <HelpModal id="help-view">
-          <TheX onClick={() => this.helpModalToggle()}>
+      <div style = { bar_view }>
+        <div style = { help_modal } id="help-view">
+          <div style = { the_x } onClick={() => this.helpModalToggle()}>
             <img src={HelpX} />
-          </TheX>
-          <ControlHelper>
+          </div>
+          <div>
             <img src={AKey}/>
             <img src={SKey}/>
             <img src={DKey}/>
             <img src={PKey}/>
-          </ControlHelper>
-        </HelpModal>
-        <SoundView
+          </div>
+        </div>
+        <div
+          style = { sound_view }
           onMouseEnter={() => this.volumeSliderHoverUp()}
           onMouseLeave={() => this.volumeSliderHoverDown()}
         >
@@ -91,19 +230,24 @@ export default class BottomBar extends React.Component {
               <source src={MainGame} type="audio/wav" />
             </audio>
           </div>
-          <SoundImg onClick={() => this.stopMusic()}>
+          <div style = { sound_img } onClick={() => this.stopMusic()}>
             <img src={soundOn} />
-          </SoundImg>
-          <SoundText>Sound</SoundText>
-          <VolumeSlider id="volume-control">
-            <VolumeControl
+          </div>
+          <p style = { sound_text }>Sound</p>
+          <div style = { volume_slider } id="volume-control">
+            <input
+              min="0"
+              max="1"
+              step="0.1"
+              style = { volume_control }
+              type="range"
               value={this.state.volumeLevel}
               onChange={e => this.adjustVolume(e)}
-            ></VolumeControl>
-          </VolumeSlider>
-        </SoundView>
-        <HelpView onClick={() => this.helpModalToggle()}>
-          <HelpImg>
+            />
+          </div>
+        </div>
+        <div style = { help_view } onClick={() => this.helpModalToggle()}>
+          <div style = { help_img }>
             <svg
               width="28"
               height="28"
@@ -116,191 +260,20 @@ export default class BottomBar extends React.Component {
                 fill="white"
               />
             </svg>
-          </HelpImg>
-          <HelpText>Help</HelpText>
-        </HelpView>
-        <CurrencyView>
-          <CurrencyText>Gold: 0</CurrencyText>
+          </div>
+          <p style = { help_text }>Help</p>
+        </div>
+        <div style = { currency_view }>
+          <p style = { currency_text }>Gold: 0</p>
           <img src={gold} />
-        </CurrencyView>
-        <Anchor>
+        </div>
+        <div style = { anchor_view }>
           <img src={anchor} />
-        </Anchor>
-        <Pickup>
+        </div>
+        <div style = { pickup_view }>
           <img src={pickup} />
-        </Pickup>
-      </BarView>
+        </div>
+      </div>
     );
   }
 }
-
-//  Styles
-
-const BarView = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 37px;
-  left: 0px;
-  bottom: 0px;
-
-  background: #7e0000;
-  border: 1px solid #ffdc61;
-  box-sizing: border-box;
-`;
-
-// Action Buttons
-
-const Pickup = styled.div`
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: -220px;
-  left: 520px;
-  height: 100px;
-  width: 100px;
-  background: #f1dbb1;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-const Anchor = styled.div`
-  position: absolute;
-  top: -110px;
-  left: 520px;
-  height: 100px;
-  width: 100px;
-  background: #f1dbb1;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-// Currency Styles
-
-const CurrencyView = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  right: 0;
-  width: 232px;
-  height: 36px;
-
-  background: linear-gradient(
-      0deg,
-      rgba(241, 219, 177, 0.7),
-      rgba(241, 219, 177, 0.7)
-    ),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(86277jpg);
-  border: 1px solid #ffdc61;
-  box-sizing: border-box;
-`;
-
-const CurrencyText = styled.p`
-  margin-top: 1px;
-  margin-left: 5px;
-  font-family: Pirata One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 31px;
-  /* identical to box height */
-
-  color: #000000;
-`;
-
-// Styles for the Sound Controls
-
-const SoundView = styled.div`
-  display: flex;
-  cursor: pointer;
-  flex-direction: row;
-  margin-left: 15px;
-  height: 37px;
-`;
-
-const SoundImg = styled.div`
-  margin-right: 10px;
-  margin-top: 5px;
-`;
-
-const SoundText = styled.p`
-  margin-top: 2px;
-  font-family: Pirata One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 31px;
-  /* identical to box height */
-
-  color: #ffffff;
-`;
-
-const VolumeSlider = styled.div`
-  display: none;
-  position: absolute;
-  top: -38px;
-  left: 0px;
-  height: 38px;
-  width: 150px;
-  background: #7e0000;
-  transition: 0.5s;
-`;
-
-const VolumeControl = styled.input.attrs({
-  type: "range",
-  min: "0",
-  max: "1",
-  step: "0.1"
-})`
-  cursor: pointer;
-  margin-top: 10px;
-`;
-// Styles for the Help Text box
-
-const HelpView = styled.div`
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  margin-left: 40px;
-  height: 37px;
-`;
-
-const HelpImg = styled.div`
-  margin-right: 8px;
-  margin-top: 3px;
-`;
-
-const HelpText = styled.p`
-  margin-top: 2px;
-  font-family: Pirata One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 31px;
-  /* identical to box height */
-
-  color: #ffffff;
-`;
-
-const HelpModal = styled.div`
-  display: block;
-  position: absolute;
-  top: -65vh;
-  left: 33vw;
-  height: 330px;
-  width: 500px;
-  background: rgba(0, 0, 0, 0.7);
-`;
-
-const TheX = styled.div`
-  width: 30px;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  cursor: pointer;
-`;
-
-const ControlHelper = styled.div`
-`;
