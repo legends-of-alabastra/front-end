@@ -47,11 +47,13 @@ export default function ChatClient() {
           <WelcomeMessage />
         </div>
 
-        <div style = { chat_input }>
+        <form style = { chat_input }>
           <input 
-            
+            type="text"
+            value = { this.state.chat }
+            onChange = { this.handleChange }
           />
-        </div>
+        </form>
       </ChatkitProvider>
     </div>
   );
