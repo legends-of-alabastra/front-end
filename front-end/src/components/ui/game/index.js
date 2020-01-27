@@ -12,6 +12,7 @@ export default class Game extends React.Component {
         super(props)
         this.state = {
             interval: null,
+            ship_speed: 5,
 
             map: [],
             map_tileset: [],
@@ -20,13 +21,13 @@ export default class Game extends React.Component {
             player_coordinates: {x: 0, y: 0},
             player_tile: {x: 0, y: 0},
             player_direction: 90,
-            player_speed: 1,
+            player_speed: 5,
 
             players: []
         }
     }
     componentDidMount() {
-        window.addEventListener('keyup', e => console.log('up'))
+        window.addEventListener('keyup', e => this.player_action(e))
         window.addEventListener('keydown', e => this.update_player_direction(e))
         window.addEventListener('resize', () => console.log('resize'))
         const {map, tileset, colors} = gen_map()
@@ -38,14 +39,27 @@ export default class Game extends React.Component {
         })
     }
     componentWillUnmount() {
-        window.removeEventListener('keyup', e => console.log('up'))
+        window.removeEventListener('keyup', e => this.player_action(e))
         window.removeEventListener('keydown', e => this.update_player_direction(e))
         window.removeEventListener('resize', () => console.log('resize'))
     }
+    player_action = e => {
+        switch(e.key.toLowerCase()) {
+            case 's':
+            case 'arrowdown':
+                console.log('stop')
+                this.setState(prev => {
+                    prev.player_speed === 0 ? prev.player_speed = prev.ship_speed : prev.player_speed = 0
+                    return({player_speed: prev.player_speed})
+                })
+                break
+            default: break
+        }
+    }
     update_player_direction = e => {
         this.setState(prev => {
-            if(e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'arrowleft') prev.player_direction += 2
-            else if(e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'arrowright') prev.player_direction -= 2
+            if(e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'arrowleft') prev.player_direction += 5
+            else if(e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'arrowright') prev.player_direction -= 5
             if(prev.player_direction < 0) {
                 prev.player_direction = 359
             }
@@ -57,9 +71,9 @@ export default class Game extends React.Component {
         this.setState(prev => {
             const x = prev.player_speed*Math.sin(Math.PI * prev.player_direction / 180)
             const y = prev.player_speed*Math.cos(Math.PI * prev.player_direction / 180)
-            const col = Math.round((x+prev.player_coordinates.x)/8)
+            const col = Math.round((6+x+prev.player_coordinates.x)/8)
             const row = Math.round((y+prev.player_coordinates.y)/8)
-            if(prev.map[row] && prev.map[row] !== 0)
+            if(prev.map[row] && prev.map[row][col] === 0)
                 prev.player_coordinates.y = Math.round(10*(prev.player_coordinates.y + y))/10
             if(prev.map[row] && prev.map[row][col] !== undefined && prev.map[row][col] === 0)
                 prev.player_coordinates.x = Math.round(10*(prev.player_coordinates.x + x))/10
