@@ -1,21 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Viewport from './components/ui/viewport'
-// import {createGlobalStyle} from 'styled-components'
-// import {Reset} from 'styled-reset'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-// const GlobalStyle = createGlobalStyle`
-//     * {
-//         box-sizing: border-box;
-//     }
-//     body {
-//         margin: 0;
-//         padding: 0
-//     }
-// `
-
-ReactDOM.render(
-    <>
-        <Viewport />
-    </>,
-    document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));
