@@ -107,7 +107,6 @@ const Todo = props => {
 }
 
 ReactDOM.render(<Todo />, document.getElementById('root'));
-import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
