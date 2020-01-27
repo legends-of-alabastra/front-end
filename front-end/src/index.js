@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import DjangoCSRFToken from 'django-react-csrftoken'
 import Cookies from 'universal-cookie';
+import App from './App.js'
 
 const cookies = new Cookies();
 
