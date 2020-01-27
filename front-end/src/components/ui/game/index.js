@@ -70,9 +70,7 @@ export default class Game extends React.Component {
         this.setState(prev => {
             if(e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'arrowleft') prev.player_direction += 5
             else if(e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'arrowright') prev.player_direction -= 5
-            if(prev.player_direction < 0) {
-                prev.player_direction = 359
-            }
+            if(prev.player_direction < 0) prev.player_direction = 359
             if(prev.player_direction > 360) prev.player_direction = 1
             return(prev.player_direction)
         })
