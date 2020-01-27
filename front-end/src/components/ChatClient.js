@@ -61,7 +61,7 @@ const WelcomeMessage = withChatkit(props => {
     <div>
       {props.chatkit.isLoading
         ? "Connecting to Chatkit..."
-        : `Hello ${props.chatkit.currentUser.name}! Connected to the bitch ass chat server.`}
+        : `Hello ${props.chatkit.currentUser.name}! You're in the chat and ready to kick some seniors.`}
     </div>
   );
 });

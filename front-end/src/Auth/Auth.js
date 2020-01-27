@@ -8,7 +8,10 @@ export default class Auth extends Component {
     type: 'login',
     email: '',
     username: '',
-    password: ''
+    password: '',
+    gem: "0",
+    gold: "0",
+    id: ''
   }
 
   changeType = type => this.setState({ type })
@@ -16,7 +19,7 @@ export default class Auth extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    const { email, username, password } = this.state;
+    const { email, username, password, gem, gold, id } = this.state;
 
     if(this.state.type === 'login') {
       const user = {
@@ -27,6 +30,7 @@ export default class Auth extends Component {
         .post('https://alabastraapp.herokuapp.com/api/auth/login', user)
         .then(res => {
           localStorage.setItem('token', res.data.token)
+          localStorage.setItem('user_id', res.data.id)
         })
         .then(() => this.props.history.push('/app'))
         .catch(err => console.log(err))
@@ -40,6 +44,17 @@ export default class Auth extends Component {
         .post('https://alabastraapp.herokuapp.com/api/auth/register', user)
         .then(res => {
           localStorage.setItem('token', res.data.token)
+          localStorage.setItem('user_id', res.data.user.id)
+          localStorage.setItem('username', username)
+
+          const { user } = res.data
+          
+          axios
+            .post('https://alabastraapp.herokuapp.com/playeritems/', {
+              id: user.id, username: user.username, gold: "0", gem: "0"
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
         })
         .then(() => this.props.history.push('/app'))
         .catch(err => console.log(err))

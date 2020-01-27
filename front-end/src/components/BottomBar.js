@@ -36,6 +36,8 @@ export default class BottomBar extends React.Component {
       help.style.display = "none";
       this.setState({ helpOpen: false });
     }
+
+    this.props.startGame();
   }
 
   volumeSliderHoverUp() {
@@ -109,7 +111,7 @@ export default class BottomBar extends React.Component {
       flexDirection: 'row',
       justifyContent: 'space-between',
       right: '0',
-      width: '232px',
+      width: '432px',
       height: '36px',
       background: 'linear-gradient(0deg,rgba(241, 219, 177, 0.7),rgba(241, 219, 177, 0.7)),linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(86277jpg)',
       border: '1px solid #ffdc61',
@@ -211,6 +213,8 @@ export default class BottomBar extends React.Component {
       marginLeft: '40px'
     }
 
+    console.log(this.props)
+
     return (
       <div style = { bar_view }>
         <div style = { help_modal } id="help-view">
@@ -268,14 +272,12 @@ export default class BottomBar extends React.Component {
           <p style = { help_text }>Help</p>
         </div>
         <div style = { currency_view }>
-          <p style = { currency_text }>Gold: 0</p>
+          <p style = { currency_text }>Gold: { this.props.gold.toString() || 0 }</p>
+          <p style = { currency_text }>Gems: { this.props.gem.toString() || 0 }</p>
           <img src={gold} />
         </div>
         <div style = { anchor_view }>
           <img src={anchor} />
-        </div>
-        <div style = { pickup_view }>
-          <img src={pickup} />
         </div>
       </div>
     );

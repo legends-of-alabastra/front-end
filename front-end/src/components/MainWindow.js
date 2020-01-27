@@ -10,7 +10,6 @@ import RAID from "../assets/RAID.jpg";
 import MapWindow from "./MapWindow.js";
 import InfoWindow from "./InfoWindow.js";
 import ChatWindow from "./ChatWindow.js";
-import BottomBar from "./BottomBar.js";
 
 export default class MainWindow extends React.Component {
   render() {
@@ -23,10 +22,8 @@ export default class MainWindow extends React.Component {
     return (
       <div style = { main_view }>
         <Game />
-        <MapWindow />
         <InfoWindow />
         <ChatWindow />
-        <BottomBar />
       </div>
     );
   }
