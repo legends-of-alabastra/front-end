@@ -15,6 +15,7 @@ export default class Map extends React.Component {
     }
         
 
+
     componentDidMount() {
         this.start_event_listeners()
         const {map, tileset, colors} = gen_map()
@@ -96,7 +97,9 @@ export default class Map extends React.Component {
 
             document.querySelector('#map').style.transform = `translate(${canvas_coordinate_x}px, ${canvas_coordinate_y}px)`
             this.draw_ship(90)
-            console.log(prev.player_direction, '--', prev.player_coordinates)
+            console.log(parseInt(prev.player_direction))
+            console.log("x", parseInt(prev.player_coordinates.x))
+            console.log("y", parseInt(prev.player_coordinates.y))
             return(prev.player_coordinates)
         })
     }

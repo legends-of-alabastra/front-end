@@ -207,13 +207,17 @@ export default class BottomBar extends React.Component {
       cursor: 'pointer'
     }
 
+    const keys = {
+      marginLeft: '40px'
+    }
+
     return (
       <div style = { bar_view }>
         <div style = { help_modal } id="help-view">
           <div style = { the_x } onClick={() => this.helpModalToggle()}>
             <img src={HelpX} />
           </div>
-          <div>
+          <div style = { keys }>
             <img src={AKey}/>
             <img src={SKey}/>
             <img src={DKey}/>

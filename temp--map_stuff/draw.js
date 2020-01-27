@@ -1,6 +1,3 @@
-const canvas = document.getElementById('background')
-const ctx = canvas.getContext('2d')
-
 const player = {
     viewport: {height_px: 600, witdh_px: 800},
     coordinates: {x: 500, y: 500},

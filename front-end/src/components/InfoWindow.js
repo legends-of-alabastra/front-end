@@ -16,7 +16,7 @@ export default class InfoWindow extends React.Component {
     let channel = pusher.subscribe("my-channel");
     channel.bind("room", function(data) {
       let roomMessage = document.createElement("p");
-      let a = document.createTextNode(JSON.stringify(data.message));
+      let a = document.createTextNode(JSON.stringify(data.description));
       roomMessage.appendChild(a);
       document.querySelector("#info-feed").appendChild(roomMessage);
       document.querySelector("#info-feed").scrollTo(0, 235);
