@@ -31,17 +31,30 @@ export default class Game extends React.Component {
         window.addEventListener('keydown', e => this.update_player_direction(e))
         window.addEventListener('resize', () => console.log('resize'))
         const {map, tileset, colors} = gen_map()
+
         this.setState({
             map: map,
             map_tileset: tileset,
             map_colors: colors,
-            interval: setInterval(() => this.update_player_position(), 1000/30)
+            interval: setInterval(() => this.update_player_position(), 1000/30),
+            player_coordinates: this.get_random_water_tile(map)
         })
     }
     componentWillUnmount() {
         window.removeEventListener('keyup', e => this.player_action(e))
         window.removeEventListener('keydown', e => this.update_player_direction(e))
         window.removeEventListener('resize', () => console.log('resize'))
+    }
+    get_random_water_tile = map => {
+        let coordinates = {x: 0, y: 0}
+        while(true) {
+            console.log('llop')
+            coordinates.y = Math.floor(Math.random()*map.length*8)
+            coordinates.x = Math.floor(Math.random()*map[0].length*8)
+            console.log(coordinates)
+            if(map[Math.round(coordinates.y/8)][Math.round(coordinates.x/8)] === 0) break
+        }
+        return coordinates
     }
     player_action = e => {
         switch(e.key.toLowerCase()) {
