@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from 'react';
 import Login from './components/state/types/Login'
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
       </Router>
     </div>
   );
-=======
+
 import React, { Component } from 'react';
 // import axios from 'axios';
 
@@ -47,7 +47,6 @@ class App extends Component {
       </Router>
     );
   }
->>>>>>> cde4afec0a24b218657f3aa59a627227d665ff72
 }
 
 export default App;
