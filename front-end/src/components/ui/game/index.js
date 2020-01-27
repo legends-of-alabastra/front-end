@@ -21,7 +21,7 @@ export default class Game extends React.Component {
             player_coordinates: {x: 0, y: 0},
             player_tile: {x: 0, y: 0},
             player_direction: 90,
-            player_speed: 5,
+            player_speed: 0,
 
             players: []
         }
@@ -48,10 +48,8 @@ export default class Game extends React.Component {
     get_random_water_tile = map => {
         let coordinates = {x: 0, y: 0}
         while(true) {
-            console.log('llop')
             coordinates.y = Math.floor(Math.random()*map.length*8)
             coordinates.x = Math.floor(Math.random()*map[0].length*8)
-            console.log(coordinates)
             if(map[Math.round(coordinates.y/8)][Math.round(coordinates.x/8)] === 0) break
         }
         return coordinates
@@ -60,7 +58,6 @@ export default class Game extends React.Component {
         switch(e.key.toLowerCase()) {
             case 's':
             case 'arrowdown':
-                console.log('stop')
                 this.setState(prev => {
                     prev.player_speed === 0 ? prev.player_speed = prev.ship_speed : prev.player_speed = 0
                     return({player_speed: prev.player_speed})
