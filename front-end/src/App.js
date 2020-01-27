@@ -1,11 +1,14 @@
 import React from 'react';
-
+import Login from './components/state/types/Login'
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1> Giggity </h1>
+      <Router>
+        <Route exact path="/" component={() => <Login />} />
+      </Router>
     </div>
   );
 }
