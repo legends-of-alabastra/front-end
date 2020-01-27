@@ -4,7 +4,7 @@ import {
   ChatkitProvider,
   TokenProvider,
   withChatkit,
-  withChatkitOneToOne
+  // withChatkitOneToOne
 } from "@pusher/chatkit-client-react";
 
 const instanceLocator = "v1:us1:5cab4222-c45a-4257-87c1-14dc774f3f24";
@@ -23,6 +23,7 @@ export default function ChatClient() {
   }
 
   const chat_textbox = {
+    marginTop: '30px',
     color: 'white',
     overflow: 'auto'
   }

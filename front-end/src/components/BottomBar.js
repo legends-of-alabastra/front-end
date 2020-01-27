@@ -9,9 +9,9 @@ import DKey from "../assets/TheDKey.svg";
 import PKey from "../assets/ThePKey.svg";
 import HelpX from "../assets/the-x.svg";
 import soundOn from "../assets/subway_sound.svg";
-import soundOff from "../assets/subway_mute.svg";
+// import soundOff from "../assets/subway_mute.svg";
 import gold from "../assets/gold_coin.svg";
-import pickup from "../assets/pickup.svg";
+// import pickup from "../assets/pickup.svg";
 import anchor from "../assets/anchor.svg";
 
 export default class BottomBar extends React.Component {
@@ -81,18 +81,18 @@ export default class BottomBar extends React.Component {
       boxSizing: 'border-box'
     }
 
-    const pickup_view = {
-      display: 'flex',
-      justifyContent: 'center',
-      position: 'absolute',
-      top: '-220px',
-      left: '520px',
-      height: '100px',
-      width: '100px',
-      background: '#f1dbb1',
-      borderRadius: '4px',
-      cursor: 'pointer'
-    }
+    // const pickup_view = {
+    //   display: 'flex',
+    //   justifyContent: 'center',
+    //   position: 'absolute',
+    //   top: '-220px',
+    //   left: '520px',
+    //   height: '100px',
+    //   width: '100px',
+    //   background: '#f1dbb1',
+    //   borderRadius: '4px',
+    //   cursor: 'pointer'
+    // }
 
     const anchor_view = {
       position: 'absolute',
@@ -213,19 +213,17 @@ export default class BottomBar extends React.Component {
       marginLeft: '40px'
     }
 
-    console.log(this.props)
-
     return (
       <div style = { bar_view }>
         <div style = { help_modal } id="help-view">
           <div style = { the_x } onClick={() => this.helpModalToggle()}>
-            <img src={HelpX} />
+            <img src={HelpX} alt='seniorkicker'/>
           </div>
           <div style = { keys }>
-            <img src={AKey}/>
-            <img src={SKey}/>
-            <img src={DKey}/>
-            <img src={PKey}/>
+            <img src={AKey} alt='seniorkicker'/>
+            <img src={SKey} alt='seniorkicker'/>
+            <img src={DKey} alt='seniorkicker'/>
+            <img src={PKey} alt='seniorkicker'/>
           </div>
         </div>
         <div
@@ -239,7 +237,7 @@ export default class BottomBar extends React.Component {
             </audio>
           </div>
           <div style = { sound_img } onClick={() => this.stopMusic()}>
-            <img src={soundOn} />
+            <img src={soundOn} alt='seniorkicker'/>
           </div>
           <p style = { sound_text }>Sound</p>
           <div style = { volume_slider } id="volume-control">
@@ -274,10 +272,10 @@ export default class BottomBar extends React.Component {
         <div style = { currency_view }>
           <p style = { currency_text }>Gold: { this.props.gold.toString() || 0 }</p>
           <p style = { currency_text }>Gems: { this.props.gem.toString() || 0 }</p>
-          <img src={gold} />
+          <img src={gold} alt='seniorkicker'/>
         </div>
         <div style = { anchor_view }>
-          <img src={anchor} />
+          <img src={anchor} alt='seniorkicker'/>
         </div>
       </div>
     );

@@ -39,8 +39,9 @@ export default class InfoWindow extends React.Component {
   render() {
     const info_view = {
       position: 'absolute',
+      zIndex: 10000,
       width: '500px',
-      height: '238px',
+      height: '268px',
       right: '0',
       bottom: '37px',
       border: '2px solid #ffdc61',
@@ -50,27 +51,28 @@ export default class InfoWindow extends React.Component {
     }
 
     const info_tab = {
-      zIndex: '1000',
       position: 'absolute',
       width: '72px',
       height: '29px',
-      left: '60px',
-      top: '-30px',
+      right: '0px',
       cursor: 'pointer',
       background: '#f1dbb1',
       border: '1px solid #ffdc61',
       boxSizing: 'border-box',
-      borderRadius: '4px 4px 0px 0px',
+      borderRadius: '0px 0px 0px 0px',
+      zIndex: 100000
     }
 
     const info_text = {
-      marginTop: '-1px',
+      position: 'absolute',
+      marginLeft: '17px',
       fontFamily: 'Pirata One',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '24px',
       lineHeight: '31px',
-      color: '#000000'
+      color: '#000000',
+      zIndex: 100000
     }
 
     const info_feed = {

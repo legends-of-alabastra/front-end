@@ -4,10 +4,10 @@ import React from "react";
 import Game from "./game/Game";
 
 // Import RAID product placement
-import RAID from "../assets/RAID.jpg";
+// import RAID from "../assets/RAID.jpg";
 
 // import UI components
-import MapWindow from "./MapWindow.js";
+// import MapWindow from "./MapWindow.js";
 import InfoWindow from "./InfoWindow.js";
 import ChatWindow from "./ChatWindow.js";
 

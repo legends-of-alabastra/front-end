@@ -69,6 +69,7 @@ const TopBar = props => {
         <img 
           style = { logo_style }
           src = { logo }
+          alt = {'seniorkicker'}
         />
       </div>
       <h1 style = { title }>Legends of Albastra</h1>
@@ -141,6 +142,7 @@ const Main = props => {
         <img 
           src = { lambdaBoat }
           style = { ship }
+          alt = {'seniorkicker'}
         />
         <h2 style = { title }>A Legendary <span style = {{ fontFamily: "'Pirata One', cursive" }}>pirate</span> adventure M U D</h2>
       </div>
@@ -195,6 +197,7 @@ const Bottom = props => {
           <img 
             src = { tool.src } 
             style = { image }
+            alt = {'seniorkicker'}
           />
           <span>{ tool.name }</span>
         </div>

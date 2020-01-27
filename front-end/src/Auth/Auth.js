@@ -19,7 +19,8 @@ export default class Auth extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    const { email, username, password, gem, gold, id } = this.state;
+    // const { email, username, password, gem, gold, id } = this.state;
+    const {email, username, password} = this.state
 
     if(this.state.type === 'login') {
       const user = {
@@ -137,6 +138,7 @@ export default class Auth extends Component {
           <img 
             style = { _logo }
             src = { logo } 
+            alt = {'seniorkicker'}
           />
           <h1 style = { _header }>Welcome</h1>
           <h2 style = { _subheader }>Please Log In or Sign Up</h2>
