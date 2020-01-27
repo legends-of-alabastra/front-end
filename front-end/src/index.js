@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -108,8 +107,7 @@ const Todo = props => {
 }
 
 ReactDOM.render(<Todo />, document.getElementById('root'));
-=======
 import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
->>>>>>> cde4afec0a24b218657f3aa59a627227d665ff72
+
