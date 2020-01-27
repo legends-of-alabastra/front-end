@@ -149,8 +149,8 @@ const Main = props => {
       <div style = { bottom }>
         <span style = { created_by }>Created By:</span>
         <div style = { names }>
-          { ['Miguel Diaz', 'Dustin Snoap', 'Douglas Jordan', 'Christian Ford', 'Mychal Hall'].map(name => (
-            <span>{ name }</span>
+          { ['Miguel Diaz', 'Dustin Snoap', 'Douglas Jordan', 'Christian Ford', 'Mychal Hall'].map((name,key) => (
+            <span key={key}>{ name }</span>
           )) }
         </div>
       </div>
@@ -192,8 +192,8 @@ const Bottom = props => {
   return (
     <div style = { container }>
       <span style = { span }>Made with love using:</span>
-      { tools.map(tool => (
-        <div style = { images }>
+      { tools.map((tool,key) => (
+        <div key={key} style = { images }>
           <img 
             src = { tool.src } 
             style = { image }
